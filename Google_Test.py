@@ -1,9 +1,12 @@
 from itertools import combinations
+import numpy as np
+import pandas as pd
+import matplotlib
 
 s = "232387421"
 n = 9
 m = 2
-k = 3
+k = 4
 
 s = list(s)
 for i in range(len(s)):
@@ -12,7 +15,7 @@ i = 0
 li = []
 while i < n:
     if s[i] % 2 == 0:
-        for j in range(i + (m - 1), n):
+        for j in range(i + (m - 1), m):
             if s[j] % 2 != 0:
                 li.append(s[i:j + 1])
                 i = j
@@ -21,7 +24,7 @@ while i < n:
     else:
         i = i + 1
 print(li)
-if len(li) == k:
+if len(li) == k*n:
     print(k)
 elif len(li) > k:
     temp = len(li) - k
