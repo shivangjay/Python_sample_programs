@@ -66,10 +66,7 @@ class MaxHeap:
 
         curr = self.last_index()
         
-        # While inserting the element in the heap we have to 
-        # make sure that the inserted element is always smaller
-        # than its parent. So basically here we are adjusting the 
-        # position of the parent
+        #adjusting the position of the parent
         while self.heap[curr] > self.heap[self.parent(curr)]:
             self.swap(curr, self.parent(curr))
             curr = self.parent(curr)
@@ -104,6 +101,7 @@ class MaxHeap:
         max_element = self.heap[self.front]  # max element is always at the front
         self.heap[self.front] = self.heap[self.last_index()]  # placing last element at the front
         self.heap[self.last_index()] = 0
+        self.heap[self.first_index()] = -1 # to indicate the popped element
         self.size -= 1  # decrease size as one element has been popped
         self.max_heapify(self.front)  # heapify the heap again
         return max_element
@@ -126,7 +124,7 @@ class MaxHeap:
                 print(f"Right child: {right}")
 
 
-if __name__ == '__main__':
+if __name__ == '__main__': #added test case to base code 
     max_heap = MaxHeap(15)
     max_heap.insert(5)
     max_heap.insert(3)
@@ -137,7 +135,6 @@ if __name__ == '__main__':
     max_heap.insert(6)
     max_heap.insert(22)
     max_heap.insert(9)
-
-    max_heap.print()
+    max_heap.print()    # to check if code functions properly and heap data is intact
     print('Max element is - ', max_heap.pop_max())
     max_heap.print()
